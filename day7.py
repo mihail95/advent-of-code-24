@@ -27,15 +27,13 @@ def result_can_be_combination_of_inputs(result:int, numbers:list[int], operator_
 
     return False
 
-def get_calibration_score(equation_list:list, operator_list:list) -> tuple[int, list]:
+def get_calibration_score(equation_list:list, operator_list:list) -> int:
     valid_results = []
-    invalid_results = []
     for result, numbers in equation_list:
         if result_can_be_combination_of_inputs(result, numbers, operator_list):
             valid_results.append(result)
-        else: invalid_results.append((result, numbers))
 
-    return sum(valid_results), invalid_results
+    return sum(valid_results)
 
 def concat(a:int, b:int) -> int:
     result = str(a) + str(b)
@@ -53,10 +51,10 @@ if __name__  == '__main__':
 
     equation_list = read(input_name)
 
-    calibration_score, invalid_results = get_calibration_score(equation_list, [operator.add, operator.mul])
+    calibration_score = get_calibration_score(equation_list, [operator.add, operator.mul])
     print("Calibration Score Part 1:", calibration_score)
 
-    calibration_score, invalid_results = get_calibration_score(invalid_results, [operator.add, operator.mul, concat])
+    calibration_score = get_calibration_score(equation_list, [operator.add, operator.mul, concat])
     print("Calibration Score Part 2:", calibration_score)
 
 
