@@ -25,7 +25,7 @@ def read(filename:str) -> tuple[dict, dict, list[list[int]]]:
     return (instructions_dict, reverse_instructions, pages)
 
 
-def getPagesListsCheckSum(instructions:dict, reverse_instructions:dict, page_lists:list[list[int]]) -> tuple[int, list]:
+def get_pages_lists_checksum(instructions:dict, reverse_instructions:dict, page_lists:list[list[int]]) -> tuple[int, list]:
     correct_lists = []
     incorrect_lists = []
     for page_list in page_lists:
@@ -56,7 +56,7 @@ def getPagesListsCheckSum(instructions:dict, reverse_instructions:dict, page_lis
     return sum(middle_elements), incorrect_lists
 
 
-def sortIncorrectLists(instructions:dict, reverse_instructions:dict, page_lists:list[list[int]]) -> int:
+def sort_incorrect_lists(instructions:dict, reverse_instructions:dict, page_lists:list[list[int]]) -> int:
     sorted_lists = []
     for page_list in page_lists:
         ordered_page = []
@@ -92,8 +92,8 @@ if __name__  == '__main__':
 
     instructions, reverse_instructions, pages = read(input_name)
 
-    checksum, incorrect_lists = getPagesListsCheckSum(instructions, reverse_instructions, pages)
+    checksum, incorrect_lists = get_pages_lists_checksum(instructions, reverse_instructions, pages)
     print("Part 1 Checksum:", checksum)
 
-    checksum2 = sortIncorrectLists(instructions, reverse_instructions, incorrect_lists)
+    checksum2 = sort_incorrect_lists(instructions, reverse_instructions, incorrect_lists)
     print("Part 2 Checksum:", checksum2)

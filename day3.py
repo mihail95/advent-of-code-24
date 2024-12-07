@@ -6,14 +6,14 @@ def read(filename:str) -> str:
         memory = f.read().strip()
     return memory
 
-def sumAllValidMults(memory:str) -> int:
+def sum_all_valid_mults(memory:str) -> int:
     valid_mults_re = r'(mul\(([0-9]+),([0-9]+)\))'
     valid_mults = re.findall(valid_mults_re, memory)
     multiplied_mults = [ int(mult[1])*int(mult[2]) for mult in valid_mults ]
     
     return sum(multiplied_mults)
 
-def sumAllEnabledMults(memory:str) -> int:
+def sum_all_enabled_mults(memory:str) -> int:
     valid_instructions_re = r"(mul\(([0-9]+),([0-9]+)\))|(do\(\))|(don't\(\))"
     valid_instructions = re.findall(valid_instructions_re, memory)
 
@@ -40,10 +40,10 @@ if __name__  == '__main__':
 
     memory = read(input_name)
     
-    sum_of_mults = sumAllValidMults(memory)
+    sum_of_mults = sum_all_valid_mults(memory)
     print(f"Sum of valid mults: {sum_of_mults}\n")
 
-    sum_of_enabled_mults = sumAllEnabledMults(memory)
+    sum_of_enabled_mults = sum_all_enabled_mults(memory)
     print(f"Sum of enabled mults: {sum_of_enabled_mults}")
 
     

@@ -10,7 +10,7 @@ def read(filename:str) -> tuple[list[int], list[int]]:
     return (list1, list2)
 
 
-def calculateDistanceBetween(list1: list, list2:list) -> int:
+def calculate_distance_between(list1: list, list2:list) -> int:
     distance = 0
 
     # Sort both lists
@@ -28,7 +28,7 @@ def calculateDistanceBetween(list1: list, list2:list) -> int:
     return distance
 
 
-def calculateSimilarityScore(list1: list, list2:list) -> int:
+def calculate_similarity_score(list1: list, list2:list) -> int:
     similarity = 0
     for member in list1:
         occurances = list2.count(member)
@@ -40,7 +40,7 @@ def calculateSimilarityScore(list1: list, list2:list) -> int:
 if __name__  == '__main__':
     input_name = 'input1.txt'
     list1, list2 = read(input_name)
-    distance = calculateDistanceBetween(list1, list2)
+    distance = calculate_distance_between(list1, list2)
     print("distance: ", distance)
-    similarity = calculateSimilarityScore(list1, list2)
+    similarity = calculate_similarity_score(list1, list2)
     print("similarity: ", similarity)

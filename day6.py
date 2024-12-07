@@ -22,7 +22,7 @@ def read(filename:str) -> tuple[list[list[str]],tuple[int,int]]:
     return grid, guard_start
 
 
-def findGuardPath(grid:list[list[str]], guard_start:tuple[int,int]) -> set:
+def find_guard_path(grid:list[list[str]], guard_start:tuple[int,int]) -> set:
     """Guard actions:
     - If there is something directly in front of you, turn right 90 degrees.
     - Otherwise, take a step forward.
@@ -56,7 +56,7 @@ def findGuardPath(grid:list[list[str]], guard_start:tuple[int,int]) -> set:
     
     return visited_positions
 
-def containsLoop(grid:list[list[str]], guard_start:tuple[int,int]) -> bool:
+def contains_loop(grid:list[list[str]], guard_start:tuple[int,int]) -> bool:
     direction_changes = 0
     moves = 0
     move_limit = 50000
@@ -89,7 +89,7 @@ def containsLoop(grid:list[list[str]], guard_start:tuple[int,int]) -> bool:
 
     return limit_reachead
 
-def findPossibleLoops(grid:list[list[str]], guard_start:tuple[int,int], guard_path:set) -> int:
+def find_possible_loops(grid:list[list[str]], guard_start:tuple[int,int], guard_path:set) -> int:
     loops_found = 0
     guard_y, guard_x = guard_start
     for point in guard_path:
@@ -98,7 +98,7 @@ def findPossibleLoops(grid:list[list[str]], guard_start:tuple[int,int], guard_pa
         if grid[point[0]][point[1]] in ['#', '^']: continue
         altered_grid = deepcopy(grid)
         altered_grid[point[0]][point[1]] = '#'
-        loops_found += containsLoop(altered_grid, guard_start)
+        loops_found += contains_loop(altered_grid, guard_start)
 
     return loops_found
 
@@ -120,9 +120,9 @@ if __name__  == '__main__':
 
     grid, guard_start = read(input_name)
 
-    visited_spaces = findGuardPath(grid, guard_start)
+    visited_spaces = find_guard_path(grid, guard_start)
     print("Visited spaces:", len(visited_spaces))
 
-    loops_found = findPossibleLoops(grid, guard_start, visited_spaces)
+    loops_found = find_possible_loops(grid, guard_start, visited_spaces)
     print("Loops found:", loops_found)
    

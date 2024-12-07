@@ -5,7 +5,7 @@ def read(filename:str) -> list[list[str]]:
         word_search = [[char for char in line.strip()] for line in f.readlines()]
     return word_search
 
-def findStringOccurancesInAllDirections(search_string:str, matrix:list[list[str]]) -> int:
+def find_string_occurances_in_all_directions(search_string:str, matrix:list[list[str]]) -> int:
     starting_symbol = search_string[0]
     ending_symbol = search_string[-1]
     string_len = len(search_string)
@@ -53,7 +53,7 @@ def findStringOccurancesInAllDirections(search_string:str, matrix:list[list[str]
     return string_ctr
 
 
-def findCrossingStringOccurances(search_string:str, matrix:list[list[str]]) -> int:
+def find_crossing_string_occurances(search_string:str, matrix:list[list[str]]) -> int:
     if len(search_string)%2 == 0: raise Exception("String has to be of odd length to form a cross")
 
     string_len = len(search_string)
@@ -100,8 +100,8 @@ if __name__  == '__main__':
 
     word_search = read(input_name)
 
-    xmas_count = findStringOccurancesInAllDirections("XMAS", word_search)
+    xmas_count = find_string_occurances_in_all_directions("XMAS", word_search)
     print("Part 1 answer:", xmas_count)
     
-    cross_mas_count = findCrossingStringOccurances("MAS", word_search)
+    cross_mas_count = find_crossing_string_occurances("MAS", word_search)
     print("Part 2 answer:", cross_mas_count)

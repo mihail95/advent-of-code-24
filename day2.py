@@ -7,7 +7,7 @@ def read(filename:str) -> list[list[int]]:
             list1.append(temp_list)
     return list1
 
-def checkRowSafe(row:list[int]) -> bool:
+def check_row_safe(row:list[int]) -> bool:
     direction = None
     prev_level = None
     is_safe = True
@@ -44,25 +44,25 @@ def checkRowSafe(row:list[int]) -> bool:
     
     return is_safe
 
-def countSafeRows(inputs:list[list[int]]) -> int:
+def count_safe_rows(inputs:list[list[int]]) -> int:
     safe_count = 0
     for row in inputs:
-        is_safe = checkRowSafe(row)
+        is_safe = check_row_safe(row)
         safe_count += is_safe
   
     return safe_count
 
-def countSafeRowsWithDampener(inputs:list[list[int]]) -> int:
+def count_safe_rows_with_dampener(inputs:list[list[int]]) -> int:
     safe_count = 0
     for row in inputs:
         row_safe_ctr = 0
-        if checkRowSafe(row) == True:
+        if check_row_safe(row) == True:
             safe_count += 1
             continue
         for idx in range(len(row)):
             temp_row = row[:]
             temp_row.pop(idx)
-            row_safe_ctr += checkRowSafe(temp_row)
+            row_safe_ctr += check_row_safe(temp_row)
             print(f"Safe count for {row}, temp_row {temp_row}: {row_safe_ctr}")
 
         is_safe = True if row_safe_ctr > 0 else False
@@ -74,7 +74,7 @@ def countSafeRowsWithDampener(inputs:list[list[int]]) -> int:
 if __name__  == '__main__':
     input_name = 'input2.txt'
     input_list = read(input_name)
-    safe_count = countSafeRows(input_list)
+    safe_count = count_safe_rows(input_list)
     print(f"safe rows: {safe_count}")
-    damp_safe_count = countSafeRowsWithDampener(input_list)
+    damp_safe_count = count_safe_rows_with_dampener(input_list)
     print(f"safe rows with dampener: {damp_safe_count}")
