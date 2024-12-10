@@ -85,12 +85,7 @@ def get_whole_file_defragment_checksum(disk_contents:list) -> int:
                 if last_file[1][0] < space_size:
                     empty_size_indeces[exp_idx+last_file[1][0]] = (space_size-last_file[1][0], 999)
 
-
-    
-
     return sum([key*value for key, value in defragged_memory.items()])
-
-
 
 
 if __name__  == '__main__':
