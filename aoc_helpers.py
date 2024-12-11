@@ -63,3 +63,13 @@ class Grid:
         """Sets the valid neighbours for each space in the grid"""
         for space in self.spaces.values():
             space.set_space_neighbours((self.height-1, self.width-1), diagonal)
+
+def flatten_nested_array(nested_array:list) -> list:
+    """Reccursively flattens a nested array with an arbitrary depth to one dimension"""
+    flattened = []
+    for item in nested_array:
+        if isinstance(item, list):
+            flattened.extend(flatten_nested_array(item))
+        else:
+            flattened.append(item)
+    return flattened

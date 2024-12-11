@@ -1,5 +1,5 @@
 import argparse
-from aoc_helpers import Grid, GridSpace
+from aoc_helpers import Grid, GridSpace, flatten_nested_array
 
 def read(filename:str) -> tuple[Grid, list]:
     with open(filename, mode='r') as f:
@@ -42,15 +42,6 @@ def sum_of_valid_trailhead_scores(grid:Grid, trailheads:list[tuple], end_node:in
 
     all_trailhead_valid_routes = flatten_nested_array(all_trailhead_valid_routes)
     return len(all_trailhead_valid_routes)
-
-def flatten_nested_array(nested_array:list) -> list:
-    flattened = []
-    for item in nested_array:
-        if isinstance(item, list):  # Check if the item is a list
-            flattened.extend(flatten_nested_array(item))  # Recursively flatten
-        else:
-            flattened.append(item)  # Append non-list items
-    return flattened
 
 if __name__  == '__main__':
     file_name = 'input10.txt'
