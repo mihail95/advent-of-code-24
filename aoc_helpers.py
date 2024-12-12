@@ -1,3 +1,5 @@
+from typing import Generic, TypeVar
+T = TypeVar("T", bound="GridSpace")
 class GridSpace:
     """
     Represents a space in a `Grid` object.
@@ -27,7 +29,7 @@ class GridSpace:
 
         self.neighbours = {(self.y + d_y, self.x + d_x) for (d_x, d_y) in directions if 0 <= self.x + d_x <= grid_dimensions[1] and 0 <= self.y + d_y <= grid_dimensions[0]}
 
-class Grid:
+class Grid(Generic[T]):
     """
     A class representing a two-dimensional grid of `GridSpace` objects.
 
@@ -41,14 +43,15 @@ class Grid:
         __init__(dimensions: tuple[int, int]) -> None
         add_grid_space(space: GridSpace) -> None
         print_self() -> None
+        set_space_neighbours(diagonal:bool = False)
     """
     def __init__(self, dimensions:tuple[int,int]) -> None:
         """Initializes a new `Grid` object with the specified dimensions."""
         self.height = dimensions[0]
         self.width = dimensions[1]
-        self.spaces:dict[tuple[int,int], GridSpace] = {}
+        self.spaces:dict[tuple[int,int], T] = {}
 
-    def add_grid_space(self, space:GridSpace) -> None:
+    def add_grid_space(self, space:T) -> None:
         """Adds a `GridSpace` object to the grid at its specified coordinates."""
         self.spaces[(space.y, space.x)] = space
 
