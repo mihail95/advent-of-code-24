@@ -1,3 +1,5 @@
 /inputs
 /test_inputs
 /__pycache__
+.venv
+
